@@ -24,9 +24,9 @@ import param_MCJE as param
 import axis_flat
 
 
-# mc = Minecraft.create(address='nao2g005', port=param.PORT_MC)
+mc = Minecraft.create(address='192.168.1.16', port=param.PORT_MC)
 
-mc = Minecraft.create(port=param.PORT_MC)  # MCJE:14712, MCPI:4711
+# MCJE:14712, MCPI:4711
 mc.postToChat("demo1")
 
 # In Java Edition, you can use Japanese or other laguages.
