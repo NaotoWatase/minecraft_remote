@@ -7,8 +7,6 @@ import time
 mc = Minecraft.create(address='192.168.1.16', port=param.PORT_MC)
 mc.postToChat('Hello Minecraft Pi Edition')
 
-type = 1
-
 scale = 60
 
 limit = 10
@@ -22,18 +20,15 @@ listy = []
 a = 0
 b = 0
 
-if type == 0:
-    for i in range (scale):
-        listy = listy + [(scale - 1)  - i]
-if type == 1:
-    for i in range (scale):
-        b = b + 1
-        listy = listy + [(limit - 1) - a]  
-        if limit > b:   
-            a = a + 1
-        else:
-            b = 0
-            a = 0
+
+for i in range (scale):
+    b = b + 1
+    listy = listy + [(limit - 1) - a]  
+    if limit > b:   
+        a = a + 1
+    else:
+        b = 0
+        a = 0
 
 print(listy)
 
