@@ -10,8 +10,7 @@ mc.postToChat('Hello Minecraft Pi Edition')
 type = 2
 scale = 20
 limit = 20
-
-
+block = param.AIR
 
 x = 0
 y = 0
@@ -48,7 +47,7 @@ for i in range (scale):
     z = listy[i]
     mc.setBlocks(
         -x, y, -z,
-        x, y, z, param.GOLD_BLOCK
+        x, y, z, block
     )
 
 
