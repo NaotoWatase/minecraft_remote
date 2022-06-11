@@ -3,7 +3,7 @@
 from mcpi.minecraft import Minecraft
 import param_MCPI as param
 
-mc = Minecraft.create(address='192.168.1.16', port=param.PORT_MC)
+mc = Minecraft.create(address='itkids001.local', port=param.PORT_MC)
 mc.postToChat('Hello Minecraft Pi Edition')
 mc.setBlocks(-100, -1, -100,  100, -1, 100,  param.GRASS_BLOCK)
 mc.setBlocks(-100, 0, -100,  100, 64, 100,  param.AIR)

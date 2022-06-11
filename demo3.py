@@ -4,12 +4,14 @@ from mcpi.minecraft import Minecraft
 import param_MCPI as param
 import time
 
-mc = Minecraft.create(address='192.168.1.16', port=param.PORT_MC)
+mc = Minecraft.create(address='itkids001.local', port=param.PORT_MC)
 mc.postToChat('Hello Minecraft Pi Edition')
 
-scale = 60
+type = 2
+scale = 20
+limit = 20
 
-limit = 10
+
 
 x = 0
 y = 0
@@ -19,13 +21,21 @@ listy = []
 
 a = 0
 b = 0
+abso = 0
 
+if limit < 0:
+    abso = -1
+else:
+    abso = 1
 
 for i in range (scale):
-    b = b + 1
-    listy = listy + [(limit - 1) - a]  
-    if limit > b:   
-        a = a + 1
+    b = b + abso
+    if type == 1:
+        listy = listy + [(limit - abso) - a]
+    if type == 2:
+        listy = listy + [a]
+    if abs(limit) > abs(b):   
+        a = a + abso
     else:
         b = 0
         a = 0
