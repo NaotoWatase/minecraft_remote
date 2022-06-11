@@ -7,8 +7,8 @@ import time
 mc = Minecraft.create(address='itkids001.local', port=param.PORT_MC)
 mc.postToChat('Hello Minecraft Pi Edition')   
 
-def build(listy, scale, block):
-    for i in range (scale):
+def build(listy, block):
+    for i in range (len(listy)):
         x = listy[i] 
         y = i
         z = listy[i]
@@ -39,7 +39,6 @@ def pyramid(type, scale, limit, block):
             a = 0
 
     print(listy)
-    return listy, scale, block
+    build(listy, block)
 
-listy, scale, block = pyramid(type = 1, scale = 20, limit = 20, block = param.GOLD_BLOCK)
-build(listy, scale, block)
+pyramid(type = 2, scale = 20, limit = 20, block = param.AIR)
