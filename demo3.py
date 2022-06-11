@@ -12,15 +12,12 @@ scale = 20
 limit = 20
 block = param.AIR
 
-x = 0
-y = 0
-z = 0
+
 
 listy = []
 
 a = 0
 b = 0
-abso = 0
 
 if limit < 0:
     abso = -1
