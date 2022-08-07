@@ -41,4 +41,4 @@ def pyramid(type, scale, limit, block):
     print(listy)
     build(listy, block)
 
-pyramid(type = 1, scale = 20, limit = 7, block = param.GOLD_BLOCK)
+pyramid(type = 1, scale = 40, limit = 5, block = param.STONE)
