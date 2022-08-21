@@ -1,9 +1,13 @@
-# Hello World for Minecraft Pi Edition
-# mcpi, MCPI: Minecraft Pi
+# Hello World for Minecraft Java Edition 1.12.2 or earlier
 from mcpi.minecraft import Minecraft
-import param_MCPI as param
+import param_MCJE1122 as param
+import time,math
 
-mc = Minecraft.create(address='itkids001.local', port=param.PORT_MC)
-mc.postToChat('Hello Minecraft Pi Edition')
+mc = Minecraft.create(port=param.PORT_MC)
+mc.postToChat('Hello Minecraft Java Edition 1.12.2')
+
+
+
+
 mc.setBlocks(-100, -1, -100,  100, -1, 100,  param.GRASS_BLOCK)
 mc.setBlocks(-100, 0, -100,  100, 64, 100,  param.AIR)

@@ -1,0 +1,25 @@
+# Hello World for Minecraft Java Edition 1.12.2 or earlier
+from mcpi.minecraft import Minecraft
+import param_MCJE1122 as param
+import time,math
+
+mc = Minecraft.create(port=param.PORT_MC)
+mc.postToChat('Hello Minecraft Java Edition 1.12.2')
+
+while 1:
+  hits = mc.events.pollBlockHits()
+  for h in hits:
+    if h.face == 1:
+      pos = mc.player.getPos()
+      for r in range(1,5):
+        d=20
+        for i in range(0,d+1):
+          rad=2 * math.pi/d * i
+          z=pos.z + round(r*math.sin(rad))
+          x=pos.x + round(r*math.cos(rad))
+          for yy in range(0,6):
+            y = pos.y + yy -2
+            id=mc.getBlock(x,y,z)
+            if not id == 0:
+              mc.setBlock(x,y,z, 56,0)
+  time.sleep(0.1)

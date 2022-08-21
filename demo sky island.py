@@ -1,18 +1,118 @@
 # Hello World for Minecraft Pi Edition
 # mcpi, MCPI: Minecraft Pi
 from mcpi.minecraft import Minecraft
-import param_MCPI as param
-from time import sleep
+import param_MCJE1122 as param
+import time
 
-mc = Minecraft.create(address='itkids001.local', port=param.PORT_MC)
+
+mc = Minecraft.create(port=param.PORT_MC)
 mc.postToChat('Hello Minecraft Pi Edition')   
 
 NORMAL = 1000
 
+ISLAND_X = 15
+ISLAND_Y = 15
+ISLAND_Z = 15
+
+set_color = [
+    (35,0),
+    (35,1),
+    (35,2),
+    (35,3),
+    (35,4),
+    (35,5),
+    (35,6),
+    (35,7),
+    (35,8),
+    (35,9),
+    (35,10),
+    (35,11),
+    (35,12),
+    (35,13),
+    (35,14),
+    (35,15),
+    (35,0),
+    (35,1),
+    (35,2),
+    (35,3),
+    (35,4),
+    (35,5),
+    (35,6),
+    (35,7),
+    (35,8),
+    (35,9),
+    (35,10),
+    (35,11),
+    (35,12),
+    (35,13),
+    (35,14),
+    (35,15),
+    (35,0),
+    (35,1),
+    (35,2),
+    (35,3),
+    (35,4),
+    (35,5),
+    (35,6),
+    (35,7),
+    (35,8),
+    (35,9),
+    (35,10)
+]
+
+"""
+set_color = [
+    param.GOLD_BLOCK,
+    param.GOLD_BLOCK,
+    param.GOLD_BLOCK,
+    param.GOLD_BLOCK,
+    param.GOLD_BLOCK,
+    param.GOLD_BLOCK,
+    param.GOLD_BLOCK,
+    param.GOLD_BLOCK,
+    param.GOLD_BLOCK,
+    param.GOLD_BLOCK,
+    param.GOLD_BLOCK,
+    param.GOLD_BLOCK,
+    param.GOLD_BLOCK,
+    param.GOLD_BLOCK,
+    param.GOLD_BLOCK,
+    param.GOLD_BLOCK,
+    param.GOLD_BLOCK,
+    param.GOLD_BLOCK,
+    param.GOLD_BLOCK,
+    param.GOLD_BLOCK,
+    param.GOLD_BLOCK,
+    param.GOLD_BLOCK,
+    param.GOLD_BLOCK,
+    param.GOLD_BLOCK,
+    param.GOLD_BLOCK,
+    param.GOLD_BLOCK,
+    param.GOLD_BLOCK,
+    param.GOLD_BLOCK,
+    param.GOLD_BLOCK,
+    param.GOLD_BLOCK,
+    param.GOLD_BLOCK,
+    param.GOLD_BLOCK,
+    param.GOLD_BLOCK,
+    param.GOLD_BLOCK,
+    param.GOLD_BLOCK,
+    param.GOLD_BLOCK,
+    param.GOLD_BLOCK,
+    param.GOLD_BLOCK,
+    param.GOLD_BLOCK,
+    param.GOLD_BLOCK,
+    param.GOLD_BLOCK,
+    param.GOLD_BLOCK,
+    param.GOLD_BLOCK
+]
+"""
+
 
 def sky_island(island_x, island_y, island_z, block_type):
+    count_y = 0
     X, Z = set_position(island_x, island_y, island_z)
-    y = set_height(island_x, island_z, X, Z)
+    y = set_height(island_x, island_y, island_z, X, Z)
     for i in range(island_y):
         z=Z
         for i in range(island_z):
@@ -20,12 +120,15 @@ def sky_island(island_x, island_y, island_z, block_type):
             for i in range(island_x):
                 blockObj = mc.getBlock(x,y,z)
                 #mc.setBlock(x,y,z, param.AIR)
-                blockObj = block_change(blockObj, block_type)                
-                mc.setBlock(x,y+30,z, blockObj)
+                blockObj = block_change(blockObj, block_type, count_y)               
+                mc.setBlock(x,y+island_y*1.5,z, blockObj)
 
                 x = x + 1 
             z = z + 1
         y = y + 1
+        count_y += 1
+    mc.player.setPos(X, 200, Z)
+    mc.postToChat('こ...これが..空島..?') 
 
 
 def set_position(island_x, island_y, island_z):
@@ -35,7 +138,7 @@ def set_position(island_x, island_y, island_z):
     return X, Z
 
 
-def set_height(range_x, range_z, X, Z):
+def set_height(range_x, range_y, range_z, X, Z):
     z=Z
     height = []
     for i in range(range_z):
@@ -49,11 +152,11 @@ def set_height(range_x, range_z, X, Z):
     max_height = max(height)
     print(max_height)
 
-    y=max_height-12
+    y=max_height-range_y
     return y
 
-def block_change(blockObj, change_block_id):
-    if change_block_id == normal:
+def block_change(blockObj, change_block_id, count_y):
+    if change_block_id == NORMAL:
         pass
     elif blockObj == 8 or blockObj == 9:
         print("yougan")
@@ -61,10 +164,12 @@ def block_change(blockObj, change_block_id):
     elif blockObj == 0:
         pass
     else:
-        blockObj = change_block_id
+        blockObj = set_color[count_y]
     return blockObj
 
+    
 
 
-sky_island(island_x = 10, island_y = 14, island_z = 10, block_type = param.GOLD_BLOCK)
 
+
+sky_island(island_x = ISLAND_X, island_y = ISLAND_Y, island_z = ISLAND_Z, block_type = (35,2))
